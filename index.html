@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Coffee Cabinet</title>
+
+    <link rel="stylesheet" type="text/css" href='css/semantic.min.css'>
+    <link rel="stylesheet" type="text/css" href='css/app.css'>
+
+    <link href="cover_main.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+  <div class="ui segment" style="background-color: #878787">
+  <div class="toptopdiv">
+    <div class="topdiv">
+      <div class="ui two column centered grid ">
+        <div class="centered row">
+          <div class="column">
+            <div class="ui fluid card" onclick="ignite('1')">
+              <div class="content boxboi">
+                <p class="large text">1</p>
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="ui fluid card" onclick="ignite('2')">
+              <div class="content boxboi">
+                <p class="large text">2</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="centered row">
+          <div class="column">
+            <div class="ui fluid card" onclick="ignite('3')">
+              <div class="content boxboi">
+                <p class="large text">3</p>
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="ui fluid card" onclick="ignite('4')">
+              <div class="content boxboi">
+                <p class="large text">4</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ui one column centered grid ">
+        <div class="centered row">
+          <div class="column">
+            <div class="ui fluid card"  onclick="igniteAll()">
+              <div class="content boxboi">
+                <p class="large text">FIRE ALL</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  </div>
+
+<!--<div class="container-fluid">-->
+	<!--Wanneer in de plus, Mart moet kopen voor Max. In de min, Max voor Mart.-->
+
+	<!--<p id="balance">Loading...</p>-->
+  <!--<div class="row">-->
+    <!--<div class="col-sm-3">-->
+      <!--<button type="button" class="btn btn-primary" onclick="ignite('1')">Max klein gekocht voor Mart</button>-->
+    <!--</div>-->
+    <!--<div class="col-sm-3">-->
+      <!--<button type="button" class="btn btn-primary" onclick="ignite('2')">Mart klein gekocht voor Max</button>-->
+    <!--</div></div>-->
+    <!--<div class="row">-->
+    <!--<div class="col-sm-3">-->
+      <!--<button type="button" class="btn btn-primary"  onclick="ignite('3')">Max groot gekocht voor Mart</button>-->
+    <!--</div>-->
+    <!--<div class="col-sm-3">-->
+      <!--<button type="button" class="btn btn-primary" onclick="ignite('4')">Mart groot gekocht voor Max</button>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src='script.js'></script>
+<script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+      apiKey: "AIzaSyDxevdF3ZMOhnQLpZUfOPwHz5vlry7v0do",
+      authDomain: "carbid-abcd7.firebaseapp.com",
+      databaseURL: "https://carbid-abcd7.firebaseio.com",
+      projectId: "carbid-abcd7",
+      storageBucket: "carbid-abcd7.appspot.com",
+      messagingSenderId: "311627187638"
+  };
+  firebase.initializeApp(config);
+
+
+
+  function ignite(can) {
+      firebase.database().ref("cannisters/" + can).set({
+          fire: 1
+      });
+
+  }
+  function igniteAll() {
+      firebase.database().ref("cannisters/1").set({
+          fire: 1
+      });
+      firebase.database().ref("cannisters/2").set({
+          fire: 1
+      });
+      firebase.database().ref("cannisters/3").set({
+          fire: 1
+      });
+      firebase.database().ref("cannisters/4").set({
+          fire: 1
+      });
+    
+}
+</script>
+</body>
+</html>
