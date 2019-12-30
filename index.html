@@ -20,15 +20,15 @@
       <div class="ui two column centered grid ">
         <div class="centered row">
           <div class="column">
-            <div class="ui fluid card" onclick="ignite('1')">
-              <div class="content boxboi">
+            <div class="ui fluid card" onclick="ignite('1')"  >
+              <div class="content boxboi" id="1">
                 <p class="large text">1</p>
               </div>
             </div>
           </div>
           <div class="column">
             <div class="ui fluid card" onclick="ignite('2')">
-              <div class="content boxboi">
+              <div class="content boxboi" id="2">
                 <p class="large text">2</p>
               </div>
             </div>
@@ -37,14 +37,14 @@
         <div class="centered row">
           <div class="column">
             <div class="ui fluid card" onclick="ignite('3')">
-              <div class="content boxboi">
+              <div class="content boxboi"  id="3">
                 <p class="large text">3</p>
               </div>
             </div>
           </div>
           <div class="column">
             <div class="ui fluid card" onclick="ignite('4')">
-              <div class="content boxboi">
+              <div class="content boxboi" id="4">
                 <p class="large text">4</p>
               </div>
             </div>
@@ -56,7 +56,7 @@
         <div class="centered row">
           <div class="column">
             <div class="ui fluid card"  onclick="igniteAll()">
-              <div class="content boxboi">
+              <div class="content boxboi" id="all">
                 <p class="large text">FIRE ALL</p>
               </div>
             </div>
@@ -108,12 +108,13 @@
   firebase.initializeApp(config);
 
 
-
   function ignite(can) {
       firebase.database().ref("cannisters/" + can).set({
           fire: 1
       });
 
+      var box = document.getElementById(can);
+      box.style.backgroundColor = "coral";
   }
   function igniteAll() {
       firebase.database().ref("cannisters/1").set({
@@ -130,6 +131,54 @@
       });
     
 }
+  var one = firebase.database().ref("/cannisters/1");
+  one.on('value', function(snapshot){
+      var box = document.getElementById("1");
+      if (snapshot.val().fire === 1) {
+          box.style.backgroundColor = "coral";
+      } else {
+          box.style.backgroundColor = "lightgreen";
+          setTimeout(function() {
+              box.style.backgroundColor = "#555555"
+          }, 500);
+      }
+  });
+  var two = firebase.database().ref("/cannisters/2");
+  two.on('value', function(snapshot){
+      var box = document.getElementById("2");
+      if (snapshot.val().fire === 1) {
+          box.style.backgroundColor = "coral";
+      } else {
+          box.style.backgroundColor = "lightgreen";
+          setTimeout(function() {
+              box.style.backgroundColor = "#555555"
+          }, 500);
+      }
+  });
+  var three = firebase.database().ref("/cannisters/3");
+  three.on('value', function(snapshot){
+      var box = document.getElementById("3");
+      if (snapshot.val().fire === 1) {
+          box.style.backgroundColor = "coral";
+      } else {
+          box.style.backgroundColor = "lightgreen";
+          setTimeout(function() {
+              box.style.backgroundColor = "#555555"
+          }, 500);
+      }
+  });
+  var four = firebase.database().ref("/cannisters/4");
+  four.on('value', function(snapshot){
+      var box = document.getElementById("4");
+      if (snapshot.val().fire === 1) {
+          box.style.backgroundColor = "coral";
+      } else {
+          box.style.backgroundColor = "lightgreen";
+          setTimeout(function() {
+              box.style.backgroundColor = "#555555"
+          }, 500);
+      }
+  });
 </script>
 </body>
 </html>
